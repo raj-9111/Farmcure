@@ -11,3 +11,4 @@ router.post("/register", postRegister);
 router.get("/logout", logout);
 
 module.exports = router;
+

@@ -8,3 +8,4 @@ const isLoggedIn = (req, res, next) => {
 };
 
 export default isLoggedIn;
+

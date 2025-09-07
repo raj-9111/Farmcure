@@ -13,3 +13,4 @@ router.post("/register", postRegister);
 router.get("/logout", logoutUser);
 
 export default router;  // ✅ ESM export
+

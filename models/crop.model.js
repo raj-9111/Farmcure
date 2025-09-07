@@ -11,3 +11,4 @@ const cropSchema = new mongoose.Schema({
 const Crop = mongoose.model("Crop", cropSchema);
 
 export default Crop;
+

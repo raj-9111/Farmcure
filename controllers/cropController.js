@@ -18,3 +18,4 @@ export const postScan = async (req, res) => {
     res.send("Error: " + err.message);
   }
 };
+

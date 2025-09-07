@@ -12,3 +12,4 @@ router.get("/", isLoggedIn, getScan);
 router.post("/", isLoggedIn, upload.single("image"), postScan);
 
 export default router;
+

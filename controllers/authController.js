@@ -74,3 +74,4 @@ export const logoutUser = (req, res) => {
     res.redirect("/");
   });
 };
+
