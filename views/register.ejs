@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | Farmcure</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="flex flex-col min-h-screen bg-cover bg-center bg-[#dbeaff]">
+
+  <!-- Main Content -->
+  <div class="flex-1 flex justify-center items-center">
+
+    <!-- Wrapper -->
+    <div class="relative bg-white w-[90%] max-w-md backdrop-blur-xl border-2 border-white/50 rounded-2xl shadow-xl flex justify-center items-center overflow-hidden scale-95 opacity-0 transition-all duration-700 ease-out"
+         id="wrapper"
+         data-aos="zoom-in">
+
+      <!-- Close Icon -->
+      <a href="/" class="absolute top-0 right-0 w-11 h-11 bg-[#162938] text-white flex justify-center items-center rounded-bl-2xl text-2xl cursor-pointer z-10 hover:scale-110 transition-transform duration-300">
+        <ion-icon name="close"></ion-icon>
+      </a>
+
+      <!-- Registration Form -->
+      <div class="w-full p-10">
+        <h2 class="text-2xl font-bold text-[#162938] text-center mb-6" data-aos="fade-down" data-aos-delay="200">Register</h2>
+
+        <!-- Flash error -->
+        <% if (error && error.length > 0) { %>
+          <div class="bg-red-100 text-red-600 text-sm p-2 rounded mb-4">
+            <%= error %>
+          </div>
+        <% } %>
+
+        <!-- Flash success -->
+        <% if (success && success.length > 0) { %>
+          <div class="bg-green-100 text-green-600 text-sm p-2 rounded mb-4">
+            <%= success %>
+          </div>
+        <% } %>
+
+        <form action="/users/register" method="POST">
+          <!-- Full Name -->
+          <div class="relative w-full h-12 border-b-2 border-[#162938] mb-8" data-aos="fade-up" data-aos-delay="300">
+            <span class="absolute right-2 text-xl text-[#162938] top-3">
+              <ion-icon name="person-circle"></ion-icon>
+            </span>
+            <input id="fullnameInput" type="text" name="fullname" placeholder=" " required class="peer w-full h-full bg-transparent border-none outline-none px-1 text-[#162938] font-semibold" />
+            <label id="fullnameLabel" class="absolute left-1 top-1/2 -translate-y-1/2 text-gray-500 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-5px] peer-focus:text-black transition-all">Full Name</label>
+          </div>
+
+          <!-- Email -->
+          <div class="relative w-full h-12 border-b-2 border-[#162938] mb-8" data-aos="fade-up" data-aos-delay="400">
+            <span class="absolute right-2 text-xl text-[#162938] top-3">
+              <ion-icon name="mail"></ion-icon>
+            </span>
+            <input id="emailInput" type="email" name="email" placeholder=" " required class="peer w-full h-full bg-transparent border-none outline-none px-1 text-[#162938] font-semibold" />
+            <label id="emailLabel" class="absolute left-1 top-1/2 -translate-y-1/2 text-gray-500 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-5px] peer-focus:text-black transition-all">Email</label>
+          </div>
+
+          <!-- Password -->
+          <div class="relative w-full h-12 border-b-2 border-[#162938] mb-8" data-aos="fade-up" data-aos-delay="500">
+            <span class="absolute right-2 text-xl text-[#162938] top-3">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input id="passwordInput" type="password" name="password" placeholder=" " required class="peer w-full h-full bg-transparent border-none outline-none px-1 text-[#162938] font-semibold" />
+            <label id="passwordLabel" class="absolute left-1 top-1/2 -translate-y-1/2 text-gray-500 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-5px] peer-focus:text-black transition-all">Password</label>
+          </div>
+
+          <!-- Contact -->
+          <div class="relative w-full h-12 border-b-2 border-[#162938] mb-8" data-aos="fade-up" data-aos-delay="550">
+            <span class="absolute right-2 text-xl text-[#162938] top-3">
+              <ion-icon name="call"></ion-icon>
+            </span>
+            <input id="contactInput" type="number" name="contact" placeholder=" " required class="peer w-full h-full bg-transparent border-none outline-none px-1 text-[#162938] font-semibold" />
+            <label id="contactLabel" class="absolute left-1 top-1/2 -translate-y-1/2 text-gray-500 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-5px] peer-focus:text-black transition-all">Contact</label>
+          </div>
+
+          <!-- Button -->
+          <button type="submit" class="w-full h-11 bg-[#162938] text-white rounded-md font-medium hover:bg-[#1e3a56] transform hover:scale-[1.02] transition-transform duration-300" data-aos="fade-up" data-aos-delay="600">Register</button>
+
+          <!-- Login Link -->
+          <div class="text-sm text-[#162938] text-center font-medium mt-6" data-aos="fade-up" data-aos-delay="700">
+            <p>Already have an account? 
+              <a href="/users/login" class="font-semibold hover:underline text-blue-600">Login</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-4" data-aos="fade-up">
+    <p>© 2025 Farmcure | All Rights Reserved</p>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+
+    // Fade-in on load
+    window.addEventListener("load", () => {
+      const wrapper = document.getElementById("wrapper");
+      setTimeout(() => {
+        wrapper.classList.remove("scale-95", "opacity-0");
+        wrapper.classList.add("scale-100", "opacity-100");
+      }, 200);
+    });
+
+    // Utility to hide label after input has value and loses focus
+    const autoHideLabel = (inputId, labelId) => {
+      const input = document.getElementById(inputId);
+      const label = document.getElementById(labelId);
+      if (!input || !label) return;
+      const update = () => {
+        if (input.value.trim() !== "" && document.activeElement !== input) {
+          label.style.display = "none";
+        } else {
+          label.style.display = "";
+        }
+      };
+      ["blur", "input", "focus"].forEach(evt => input.addEventListener(evt, update));
+      update();
+    };
+
+    autoHideLabel("fullnameInput", "fullnameLabel");
+    autoHideLabel("emailInput", "emailLabel");
+    autoHideLabel("passwordInput", "passwordLabel");
+    autoHideLabel("contactInput", "contactLabel");
+  </script>
+</body>
+</html>

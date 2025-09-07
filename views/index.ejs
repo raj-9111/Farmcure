@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Health | Farmcure</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="font-sans">
+  <div class="flex-1 p-4 flex flex-col h-screen bg-cover bg-center bg-[url('/images/home.jpg')]">
+    
+    <!-- Navbar -->
+    <nav class="bg-white rounded-2xl border-2 border-gray-200 p-2 flex justify-around flex-wrap shadow-md">
+      <div class="w-1/2 text-xl lg:px-20 md:px-10">
+        <h1 class="text-xl font-bold text-blue-600">Farmcure</h1>
+      </div>
+      <div class="w-1/2 flex justify-evenly items-center">
+        <a href="/" class="px-3 hover:bg-gray-300 hover:rounded-lg">Home</a>
+        <a href="/services" class="px-3 hover:bg-gray-300 hover:rounded-lg">Services</a>
+        <a href="/about" class="px-3 hover:bg-gray-300 hover:rounded-lg">About Us</a>
+        <a href="/help" class="px-3 hover:bg-gray-300 hover:rounded-lg">Help</a>
+
+        <% if (!user) { %>
+          <a href="/users/register" class="px-3 border-2 border-gray-200 rounded-lg hover:bg-gray-300 hover:rounded-lg">Signup</a>
+          <a href="/users/login" class="px-3 border-2 border-gray-200 rounded-lg hover:bg-gray-300 hover:rounded-lg">Signin</a>
+        <% } else { %>
+          <a href="/users/logout" class="px-3 border-2 border-gray-200 rounded-lg hover:bg-gray-300 hover:rounded-lg">Logout</a>
+          <a href="#" class="flex flex-wrap justify-center items-center">
+            <h3><%= user.fullname %></h3>
+            <img src="<%= user.picture || '/images/raja.jpg' %>" 
+                 alt="profilePic" 
+                 class="rounded-full w-10 bg-gray-300 ml-2 h-10">
+          </a>
+        <% } %>
+      </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="max-w-lg mx-auto mt-6">
+      <% if (error && error.length > 0) { %>
+        <div class="bg-red-100 text-red-600 text-sm p-3 rounded mb-4 text-center">
+          <%= error %>
+        </div>
+      <% } %>
+      <% if (success && success.length > 0) { %>
+        <div id="flash-success" class="bg-green-100 text-green-600 text-sm p-3 rounded mb-4 text-center">
+          <%= success %>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-screen flex items-center">
+      <div class="relative z-10 text-white px-10 max-w-2xl">
+        <button class="bg-white/20 px-4 py-1 rounded-full text-sm mb-4">
+          AI-Powered Plant Care
+        </button>
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+          Upload a Photo, Detect Plant Diseases Instantly.
+        </h1>
+        <p class="mt-4 text-lg">
+          Just take a picture of your plant, and our AI identifies symptoms, diagnoses diseases, and suggests effective treatments.
+        </p>
+        <a href="/scan" class="mt-6 inline-block bg-lime-400 text-black px-6 py-3 rounded-full font-semibold">
+          Upload Now →
+        </a>
+      </div>
+
+      <!-- Mission card -->
+      <div class="absolute bottom-20 right-10 bg-white/10 backdrop-blur-md p-6 rounded-xl text-white max-w-xs">
+        <h3 class="font-semibold mb-2">Our Mission</h3>
+        <p class="text-sm">
+          To empower farmers and gardeners with instant, reliable, and affordable solutions for plant health.
+        </p>
+        <a href="/services" class="text-lime-300 inline-block mt-2">Learn More →</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- About Us -->
+  <section class="py-20 px-10 bg-white h-screen items-center">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <img src="https://imgs.search.brave.com/N7WG2-ybHuKu7-NFjeN4DFC_4ZjBvOxVmS2EDa4ZF_s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzEyLzYyLzE0Lzk4/LzM2MF9GXzEyNjIx/NDk4MTdfZTJCM01h/TjdNS2p5bU42QnpW/R2FRT2dHTXFaeldG/bFYuanBn" alt="plant care" class="h-60 rounded-lg">
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold mb-4">Your Digital Plant Doctor</h2>
+        <p class="text-gray-700 mb-6">We use advanced image recognition and AI models trained on thousands of plant diseases. Our platform helps farmers and gardeners save time, reduce crop loss, and grow healthier plants with confidence.</p>
+        <a href="/about" class="text-lime-600 font-semibold">Learn More →</a>
+      </div>
+    </div>
+    <div class="mt-20 md:grid-cols-2 gap-10 items-center flex flex-wrap justify-center">
+      <div class="grid grid-cols-3 gap-4">
+        <div class="bg-gray-50 p-6 rounded-xl shadow">
+          <h3 class="text-xl font-bold">1000+</h3>
+          <p class="text-sm">Diseases Identified</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-xl shadow">
+          <h3 class="text-xl font-bold">90%</h3>
+          <p class="text-sm">Accuracy Rate</p>
+        </div>
+        <div class="bg-lime-200 p-6 rounded-xl shadow">
+          <h3 class="text-xl font-bold">50K+</</h3>
+          <p class="text-sm">Farmers Helped</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-20 px-10 bg-gray-900 text-white">
+    <h2 class="text-center text-3xl font-bold mb-12">How Farmcure Helps You</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+      <div class="p-6 bg-gray-800 rounded-xl">
+        <h3 class="font-semibold mb-2">Photo Upload</h3>
+        <p class="text-sm">Snap or upload an image of your crop directly from your phone.</p>
+      </div>
+      <div class="p-6 bg-gray-800 rounded-xl">
+        <h3 class="font-semibold mb-2">Symptom Detection</h3>
+        <p class="text-sm">Our AI scans the image to identify visible symptoms on leaves and stems.</p>
+      </div>
+      <div class="p-6 bg-gray-800 rounded-xl">
+        <h3 class="font-semibold mb-2">Disease Diagnosis</h3>
+        <p class="text-sm">Instant identification of plant diseases from a large knowledge base.</p>
+      </div>
+      <div class="p-6 bg-gray-800 rounded-xl">
+        <h3 class="font-semibold mb-2">Treatment Solutions</h3>
+        <p class="text-sm">Receive tailored solutions, from organic remedies to advanced treatments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Technology -->
+  <section class="py-20 px-10 bg-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <img src="https://imgs.search.brave.com/rh0OXtbi7yQ5Jc2GnHFlFBWfdu8RtKKxNwBbBfJ7wBc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA2LzY5Lzg3LzE1/LzM2MF9GXzY2OTg3/MTU2MF9lc3VIb3RT/NlpZaWRmMUNRRnNa/M1JLanZxV1RiVkVG/ei5qcGc" class="rounded-xl shadow" />
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold mb-4">Powered by AI & Deep Learning</h2>
+        <p class="text-gray-700 mb-6">Farmcure is built on deep neural networks trained with thousands of crop images. Our models continuously improve to provide faster and more accurate diagnosis, even for new and rare diseases.</p>
+        <a href="/about" class="text-lime-600 font-semibold">Learn More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories -->
+  <section class="py-20 px-10 bg-gray-50">
+    <div class="max-w-4xl mx-auto text-center mb-10">
+      <p class="text-xl font-medium">“I uploaded a photo of my tomato plants, and within seconds I knew it was early blight. The treatment guide saved my entire crop!”</p>
+    </div>
+    <div class="flex justify-center space-x-6">
+      <div class="text-center">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-20 h-20 rounded-full mx-auto mb-2" />
+        <p class="text-sm font-semibold">Rahul K.</p>
+        <p class="text-xs text-gray-500">Tomato Farmer</p>
+      </div>
+      <div class="text-center">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-20 h-20 rounded-full mx-auto mb-2" />
+        <p class="text-sm font-semibold">Anita S.</p>
+        <p class="text-xs text-gray-500">Rice Grower</p>
+      </div>
+      <div class="text-center">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-20 h-20 rounded-full mx-auto mb-2" />
+        <p class="text-sm font-semibold">Michael D.</p>
+        <p class="text-xs text-gray-500">Corn Farmer</p>
+      </div>
+      <div class="text-center">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg" class="w-20 h-20 rounded-full mx-auto mb-2" />
+        <p class="text-sm font-semibold">Sophia R.</p>
+        <p class="text-xs text-gray-500">Gardener</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-12 px-10">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-4 lg:grid-cols-5 gap-8">
+      <!-- Brand -->
+      <div>
+        <h3 class="text-white text-xl font-semibold mb-2">Farmcure</h3>
+        <p class="text-gray-400 text-sm">
+          A learning community committed to Growing Health.
+        </p>
+      </div>
+      <div></div>
+      <div></div>
+      <!-- Company -->
+      <div>
+        <h4 class="text-white font-semibold mb-3">Company</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="hover:text-white">About</a></li>
+          <li><a href="#" class="hover:text-white">Terms</a></li>
+          <li><a href="#" class="hover:text-white">Privacy</a></li>
+          <li><a href="#" class="hover:text-white">Status</a></li>
+          <li><a href="#" class="hover:text-white">Careers</a></li>
+        </ul>
+      </div>
+      <!-- Socials -->
+      <div>
+        <h4 class="text-white font-semibold mb-3">Socials</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="flex items-center hover:text-white"><ion-icon name="logo-twitter" class="mr-2"></ion-icon> Twitter</a></li>
+          <li><a href="#" class="flex items-center hover:text-white"><ion-icon name="logo-youtube" class="mr-2"></ion-icon> YouTube</a></li>
+          <li><a href="#" class="flex items-center hover:text-white"><ion-icon name="logo-reddit" class="mr-2"></ion-icon> Reddit</a></li>
+          <li><a href="#" class="flex items-center hover:text-white"><ion-icon name="mic-outline" class="mr-2"></ion-icon> Podcast</a></li>
+          <li><a href="#" class="flex items-center hover:text-white"><ion-icon name="logo-linkedin" class="mr-2"></ion-icon> LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="text-center mt-12 text-gray-500 text-sm">
+      <p>© 2025 Farmcure. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    // Auto-hide success flash after a short delay without changing styling
+    window.addEventListener('DOMContentLoaded', () => {
+      const successEl = document.getElementById('flash-success');
+      if (successEl) {
+        setTimeout(() => {
+          successEl.style.display = 'none';
+        }, 2500);
+      }
+    });
+  </script>
+</body>
+</html>

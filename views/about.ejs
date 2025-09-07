@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Farmcure</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .animate-bounceIn {
+      animation: bounceIn 0.8s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white rounded-2xl border-2 border-gray-200 p-2 flex justify-around flex-wrap m-4 shadow-md">
+    <div class="w-1/2 text-xl lg:px-20 md:px-10">
+      <h1 class="text-xl font-bold text-blue-600">Farmcure</h1>
+    </div>
+    <div class="w-1/2 flex justify-evenly items-center">
+      <a href="/" class="px-3 hover:bg-gray-300 hover:rounded-lg">Home</a>
+      <a href="/scan" class="px-3 hover:bg-gray-300 hover:rounded-lg">Services</a>
+      <a href="/about" class="px-3 hover:bg-gray-300 hover:rounded-lg font-semibold text-blue-600">About Us</a>
+      <a href="/help" class="px-3 hover:bg-gray-300 hover:rounded-lg">Help</a>
+      <% if (user) { %>
+        <a href="#" class="flex flex-wrap justify-center items-center">
+          <h3 class="mr-2"><%= user.fullname %></h3>
+          <img src="<%= user.picture || '/images/raja.jpg' %>" alt="profilePic" class="rounded-full w-10 h-10 bg-gray-300">
+        </a>
+      <% } else { %>
+        <a href="/users/login" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Login</a>
+      <% } %>
+    </div>
+  </nav>
+
+  <!-- Team Section -->
+  <main class="container mx-auto px-6 py-12">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-12">Meet Our Team</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <div class="bg-white rounded-2xl shadow-md p-6 w-80 text-center transition transform hover:scale-105 hover:shadow-2xl animate-fadeInUp delay-100">
+          <img src="/images/aditya.jpg" alt="Aditya Swarup Khuntia" 
+               class="w-28 h-28 mx-auto rounded-full mb-4 border-4 animate-bounceIn">
+          <h2 class="text-xl font-semibold text-gray-800">Aditya Swarup Khuntia</h2>
+          <p class="font-medium bg-blue-300 border-2 rounded-lg">Team Lead</p>
+          <p class="mt-2 text-gray-600 text-sm">💡 Skills: Node.js, Express, MongoDB</p>
+          <p class="mt-1 text-gray-600 text-sm">🗓 Experience: 2+ Years</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 w-80 text-center transition transform hover:scale-105 hover:shadow-2xl animate-fadeInUp delay-200">
+          <img src="/images/raja.jpg" alt="Raja Meher" 
+               class="w-28 h-28 mx-auto rounded-full mb-4 border-4 animate-bounceIn">
+          <h2 class="text-xl font-semibold text-gray-800">Raja Meher</h2>
+          <p class="font-medium bg-blue-300 border-2 rounded-lg">Lead Developer</p>
+          <p class="mt-2 text-gray-600 text-sm">💡 Skills: AI analyst,UI/UX Design,Node.js & Express</p>
+          <p class="mt-1 text-gray-600 text-sm">🗓 Experience: 2+ Years</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 w-80 text-center transition transform hover:scale-105 hover:shadow-2xl animate-fadeInUp delay-300">
+          <img src="/images/ambika.jpg" alt="Ambika Prasad Majhi" 
+               class="w-28 h-28 mx-auto rounded-full mb-4 border-4 animate-bounceIn">
+          <h2 class="text-xl font-semibold text-gray-800">Ambika Prasad Majhi</h2>
+          <p class="font-medium bg-blue-300 border-2 rounded-lg">UI/UX Designer</p>
+          <p class="mt-2 text-gray-600 text-sm">💡 Skills: UI/UX Design,React & TailwindCSS</p>
+          <p class="mt-1 text-gray-600 text-sm">🗓 Experience: 2+ Years</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 w-80 text-center transition transform hover:scale-105 hover:shadow-2xl animate-fadeInUp delay-400">
+          <img src="/images/shubhendu.jpg" alt="Shubhendu Sa" 
+               class="w-28 h-28 mx-auto rounded-full mb-4 border-4 animate-bounceIn">
+          <h2 class="text-xl font-semibold text-gray-800">Shubhendu Sa</h2>
+          <p class="font-medium bg-blue-300 border-2 rounded-lg ">Backend Engineer</p>
+          <p class="mt-2 text-gray-600 text-sm">💡 Skills: Python,Spring Boot,NoSQL</p>
+          <p class="mt-1 text-gray-600 text-sm">🗓 Experience: 2+ Years</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 w-80 text-center transition transform hover:scale-105 hover:shadow-2xl animate-fadeInUp delay-500">
+          <img src="/images/pritam.jpg" alt="Pritam Swain" 
+               class="w-28 h-28 mx-auto rounded-full mb-4 border-4 animate-bounceIn">
+          <h2 class="text-xl font-semibold text-gray-800">Pritam Swain</h2>
+          <p class="font-medium bg-blue-300 border-2 rounded-lg">Frontend Engineer</p>
+          <p class="mt-2 text-gray-600 text-sm">💡 Skills: UI/UX Design,React.js / Next.js,Bootstrap</p>
+          <p class="mt-1 text-gray-600 text-sm">🗓 Experience: 2+ Years</p>
+        </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-4">
+    <p>© 2025 Farmcure Team | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>

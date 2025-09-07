@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scan | Farmcure</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="bg-blue-100 w-full flex flex-col min-h-screen">
+  <div class="flex-1 p-4 flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white rounded-2xl border-2 border-gray-200 p-2 flex justify-around flex-wrap">
+      <div class="w-1/2 text-xl lg:px-20 md:px-10">
+        <h1 class="text-xl font-bold text-blue-600">Farmcure</h1>
+      </div>
+      <div class="w-1/2 flex justify-evenly items-center">
+        <a href="/" class="px-3 hover:bg-gray-300 hover:rounded-lg">Home</a>
+        <a href="/services" class="px-3 hover:bg-gray-300 hover:rounded-lg">Services</a>
+        <a href="/about" class="px-3 hover:bg-gray-300 hover:rounded-lg">About Us</a>
+        <a href="/help" class="px-3 hover:bg-gray-300 hover:rounded-lg">Help</a>
+
+        <% if (user) { %>
+          <a href="#" class="flex flex-wrap justify-center items-center">
+            <h3 class="mr-2"><%= user.fullname %></h3>
+            <img src="<%= user.picture || '/images/raja.jpg' %>" alt="profilePic" class="rounded-full w-10 h-10 bg-gray-300">
+          </a>
+        <% } else { %>
+          <a href="/users/login" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Login</a>
+        <% } %>
+      </div>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="flex-1 flex items-center justify-center px-6 min-h-[80vh]">
+      <div class="w-full flex items-center justify-center relative">
+
+        <!-- Left Box (Upload + Analyze) -->
+        <div id="box" class="bg-white border rounded-2xl shadow-lg p-6 w-[350px] h-[420px] flex flex-col items-center justify-center text-center transition-all duration-700 ease-in-out">
+          <!-- Upload -->
+          <div class="border-2 border-dashed border-gray-300 w-32 h-32 rounded-xl flex items-center justify-center mb-6 hover:border-blue-400 transition">
+            <div class="flex flex-col items-center">
+              <input id="fileInput" type="file" class="hidden" />
+              <label for="fileInput"
+                     class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
+                Add File
+              </label>
+              <p id="fileName" class="mt-2 text-gray-600 text-sm">No file selected</p>
+            </div>
+          </div>
+
+          <!-- Input -->
+          <label class="block text-sm mb-2 text-gray-700 font-medium">Which type of crop is this?</label>
+          <input id="cropInput" type="text" placeholder="eg. IR64, Sona Masoori, Basmati" class="w-full border border-gray-300 rounded-lg p-2 mb-4 text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"/>
+
+          <!-- Button -->
+          <button id="analyzeBtn" class="bg-yellow-300 hover:bg-yellow-400 px-6 py-2 rounded-lg font-semibold shadow-md transition">
+            Analyze
+          </button>
+        </div>
+
+        <!-- Right Result Section -->
+        <div id="results" class="hidden ml-10 flex-col justify-center w-[50%] opacity-0 transition-opacity duration-700 ease-in-out">
+          <h2 class="text-lg font-semibold mb-4 text-gray-800">Crop Type:</h2>
+          <p id="cropName" class="mb-6 text-gray-700">—</p>
+
+          <h2 class="text-lg font-semibold mb-2 text-gray-800">Symptoms:</h2>
+          <p class="mb-6 text-gray-700">Mosaic virus causes irregular light and dark green or yellow patches (mosaic pattern) on leaves. The leaves may become curled, wrinkled, or blistered and often appear smaller in size. Infected plants show stunted growth with poor vigor. Fruits may be discolored, deformed, or undersized, reducing yield. Overall, the disease weakens the plant and lowers crop quality.</p>
+
+          <h2 class="text-lg font-semibold mb-2 text-gray-800">Disease:</h2>
+          <p class="text-gray-700">Mosaic Virus</p>
+
+          <h2 class="text-lg font-semibold mb-2 text-gray-800">Treatments:</h2>
+          <p class="text-gray-700">Mosaic virus has no cure. Infected plants should be removed. Use resistant seeds, control insect carriers, keep fields clean, and practice crop rotation to prevent its spread.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const analyzeBtn = document.getElementById("analyzeBtn");
+    const box = document.getElementById("box");
+    const results = document.getElementById("results");
+    const cropInput = document.getElementById("cropInput");
+    const cropName = document.getElementById("cropName");
+    const fileInput = document.getElementById("fileInput");
+    const fileName = document.getElementById("fileName");
+
+    fileInput.addEventListener("change", () => {
+      fileName.textContent = fileInput.files.length > 0
+        ? fileInput.files[0].name
+        : "No file selected";
+    });
+
+    analyzeBtn.addEventListener("click", () => {
+      const cropValue = cropInput.value.trim();
+      const fileSelected = fileInput.files.length > 0;
+
+      if (cropValue !== "" && fileSelected) {
+        box.classList.add("moved-left");
+        results.classList.remove("hidden");
+        results.classList.add("fade-in");
+        cropName.textContent = cropValue;
+        setTimeout(() => {
+          results.classList.remove("opacity-0");
+          results.classList.add("opacity-100");
+        }, 50);
+      } else {
+        alert("⚠️ Please upload an image and enter crop name before analyzing.");
+      }
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-4">
+    <p>© 2025 Farmcure Team | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
